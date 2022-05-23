@@ -15,6 +15,7 @@ import services.EmployeeService;
  * 従業員に関わる処理を行うActionクラス
  *
  */
+
 public class EmployeeAction extends ActionBase {
 
     private EmployeeService service;
@@ -61,7 +62,10 @@ public class EmployeeAction extends ActionBase {
 
         //一覧画面を表示
         forward(ForwardConst.FW_EMP_INDEX);
-
     }
-
+        public void entryNew() throws ServletException, IOException {
+        	putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
+            putRequestScope(AttributeConst.EMPLOYEE, new EmployeeView()); //空の従業員インスタンス
+            forward(ForwardConst.FW_EMP_NEW);
+        }
 }
