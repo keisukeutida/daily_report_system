@@ -91,8 +91,4 @@ public interface JpaConst {
     //testクエリs
     String Q_FLW_TEST = ENTITY_FLW + ".test";
     String Q_FLW_TEST_DEF = "SELECT f FROM Follow AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE;
-
-    //従業員検索用クエリ
-    String Q_FLW_SERCH = ENTITY_FLW + ".serch";
-    String Q_FLW_SERCH_DEF = "SELECT e FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
 }
