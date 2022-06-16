@@ -7,20 +7,22 @@
 <c:set var="actEmp" value="${ForwardConst.ACT_EMP.getValue()}" />
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
 <c:set var="actAuth" value="${ForwardConst.ACT_AUTH.getValue()}" />
+<c:set var="actFlw" value="${ForwardConst.ACT_FLW.getValue()}" />
 
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commOut" value="${ForwardConst.CMD_LOGOUT.getValue()}" />
 
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-<meta charset="UTF-8">
-    <title><c:out value="日報管理システム" /></title>
-    <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
-    <link rel="stylesheet" href="<c:url value='/css/style.css' />">
-</head>
-<body>
-    <div id="wrapper">
+    <head>
+        <meta charset="UTF-8">
+        <title><c:out value="日報管理システム" /></title>
+        <link rel="stylesheet" href="<c:url value='/css/reset.css' />">
+        <link rel="stylesheet" href="<c:url value='/css/style.css' />">
+    </head>
+    <body>
+
+     <div id="wrapper">
         <div id="header">
             <div id="header_menu">
                 <h1><a href="<c:url value='/?action=${actTop}&command=${commIdx}' />">日報管理システム</a></h1>&nbsp;&nbsp;&nbsp;
@@ -29,6 +31,7 @@
                         <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">従業員管理</a>&nbsp;
                     </c:if>
                     <a href="<c:url value='?action=${actRep}&command=${commIdx}' />">日報管理</a>&nbsp;
+                    <a href="<c:url value='?action=${actFlw}&command=${commIdx}' />">フォロー管理</a>&nbsp;
                 </c:if>
             </div>
             <c:if test="${sessionScope.login_employee != null}">
@@ -42,5 +45,6 @@
         <div id="content">${param.content}</div>
         <div id="footer">by Taro Kirameki.</div>
     </div>
-</body>
+
+    </body>
 </html>

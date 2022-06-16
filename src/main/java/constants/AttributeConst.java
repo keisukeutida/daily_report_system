@@ -41,6 +41,14 @@ public enum AttributeConst {
     DEL_FLAG_TRUE(1),
     DEL_FLAG_FALSE(0),
 
+    //フォロー機能&Entity
+    FOLLOWS("follows"),
+    FOLLOW("follow"),
+    FLW_ID("id"),
+    FLW_EMP("employee"),
+    FLW_FL_EMP("followed_employee"),
+    FLW_EMP_NUM("follows_emp_num"),
+
     //日報管理
     REPORT("report"),
     REPORTS("reports"),

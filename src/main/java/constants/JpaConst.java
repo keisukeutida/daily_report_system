@@ -1,18 +1,19 @@
 package constants;
 
-/**
- * DB関連の項目値を定義するインターフェース
- * ※インターフェイスに定義した変数は public static final 修飾子がついているとみなされる
- */
-public interface JpaConst {
+/*
+ * DB関連の項目値を定義するインターフェイス
+ * ※インターフェイスに定義した変数はpublic static final 修飾子がついているとみなされる
+ *
+ * */
 
+public interface JpaConst {
     //persistence-unit名
     String PERSISTENCE_UNIT_NAME = "daily_report_system";
 
     //データ取得件数の最大値
-    int ROW_PER_PAGE = 15; //1ページに表示するレコードの数
+    int ROW_PER_PAGE = 15;//１ページに表示するレコードの数
 
-    //従業員テーブル
+  //従業員テーブル
     String TABLE_EMP = "employees"; //テーブル名
     //従業員テーブルカラム
     String EMP_COL_ID = "id"; //id
@@ -40,9 +41,17 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+    //フォローテーブル
+    String TABLE_FLW = "follows";//テーブル名
+    //フォローテーブルカラム
+    String FLW_COL_ID = "id";//id
+    String FLW_COL_EMP = "employee_id";//フォローをする従業員id
+    String FLW_COL_FLWEMP = "followed_employee_id";//フォローされた従業員
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_FLW = "follow";//フォロー機能
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -75,4 +84,15 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
+    //指定した従業員のidを保持するfollowed_employee_idを取得する
+    String Q_FLW_GET_ALL_FLWEMP = ENTITY_FLW + ".getAll";
+    String Q_FLW_GET_ALL_FLWEMP_DEF = "SELECT f FROM Follow AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //testクエリs
+    String Q_FLW_TEST = ENTITY_FLW + ".test";
+    String Q_FLW_TEST_DEF = "SELECT f FROM Follow AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //従業員検索用クエリ
+    String Q_FLW_SERCH = ENTITY_FLW + ".serch";
+    String Q_FLW_SERCH_DEF = "SELECT e FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
 }

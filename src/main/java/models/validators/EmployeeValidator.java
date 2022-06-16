@@ -6,6 +6,7 @@ import java.util.List;
 import actions.views.EmployeeView;
 import constants.MessageConst;
 import services.EmployeeService;
+import services.FollowService;
 
 /**
  * 従業員インスタンスに設定されている値のバリデーションを行うクラス
@@ -117,4 +118,10 @@ public class EmployeeValidator {
         //エラーがない場合は空文字を返却
         return "";
     }
+
+	public static List<String> validate(FollowService followService, EmployeeView ev, boolean codeDuplicateCheckFlag,
+			boolean passwordCheckFlag) {
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
+	}
 }
