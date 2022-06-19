@@ -1,6 +1,7 @@
 package services;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import actions.views.EmployeeConverter;
@@ -30,6 +31,26 @@ public class ReportService extends ServiceBase {
                 .setMaxResults(JpaConst.ROW_PER_PAGE)
                 .getResultList();
         return ReportConverter.toViewList(reports);
+    }
+
+    public List<ReportView> getFollowedEmpLatestReport(EmployeeView employee) {
+
+    	List<ReportView> report = new ArrayList<ReportView>();
+    	List<Object[]> reportList = session.createSQLQuery(JpaConst.Q_FLW_GET_ALL_FLWEMP_REPORT_DEF)
+    			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, employee.getId()).list();
+
+    	for(Object[] row : reportList){
+    		ReportView rpt = new ReportView();
+
+    		rpt.setName((String)row[0]);
+    		rpt.setId(row[1] == null ? null : (Integer)row[1]);
+//    		LocalDate localDate = Date.valueOf((String) row[2].toLocalDate()).toLocalDate();
+    		//rpt.setReportDate(localDate);
+    		rpt.setTitle((String)row[3]);
+    		report.add(rpt);
+    	}
+
+        return report;
     }
 
     /**

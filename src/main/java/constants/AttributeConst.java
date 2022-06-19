@@ -48,6 +48,7 @@ public enum AttributeConst {
     FLW_EMP("employee"),
     FLW_FL_EMP("followed_employee"),
     FLW_EMP_NUM("follows_emp_num"),
+    FLW_REPORTS("follows_reports"),
 
     //日報管理
     REPORT("report"),

@@ -52,6 +52,7 @@ public interface JpaConst {
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
     String ENTITY_FLW = "follow";//フォロー機能
+    String ENTITY_FLW_VIEW = "FollowView";//フォロー機能
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -88,7 +89,17 @@ public interface JpaConst {
     String Q_FLW_GET_ALL_FLWEMP = ENTITY_FLW + ".getAll";
     String Q_FLW_GET_ALL_FLWEMP_DEF = "SELECT f FROM Follow AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE;
 
+    //指定した従業員のidを保持するfollowed_employee_idを取得する
+    String Q_FLW_GET_ALL_FLWEMP_VIEW_DEF = "SELECT f.id, e.id as not_followed_employee_id, e.name, f.followed_employee_id FROM employees e left join follows f on e.id = f.followed_employee_id AND f.employee_id = :" + JPQL_PARM_EMPLOYEE + "  WHERE e.delete_flag = 0";
+
+    //指定した従業員がフォローしている従業員直近日報取得
+    String Q_FLW_GET_ALL_FLWEMP_REPORT_DEF = "SELECT e.name, r.id,  r.report_date, r.title FROM reports r left join follows f on f.followed_employee_id = r.employee_id and f.employee_id = :" + JPQL_PARM_EMPLOYEE + " inner join employees e on e.id = f.followed_employee_id  WHERE e.delete_flag = 0";
+
     //testクエリs
     String Q_FLW_TEST = ENTITY_FLW + ".test";
     String Q_FLW_TEST_DEF = "SELECT f FROM Follow AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE;
+
+    //従業員検索用クエリ
+    String Q_FLW_SERCH = ENTITY_FLW + ".serch";
+    String Q_FLW_SERCH_DEF = "SELECT e FROM Employee AS e WHERE e.code = :" + JPQL_PARM_CODE;
 }

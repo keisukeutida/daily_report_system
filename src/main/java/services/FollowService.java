@@ -3,6 +3,7 @@ package services;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -17,34 +18,42 @@ import constants.AttributeConst;
 import constants.ForwardConst;
 import constants.JpaConst;
 import models.Employee;
-import models.Follow;
 import models.validators.EmployeeValidator;
 import utils.EncryptUtil;
 
 
 public class FollowService extends ServiceBase {
-
-
     /*
      * ログインしている従業員のフォローしている従業員のidをリストで取得する
      * */
     public List<FollowView> getFollowEmp(EmployeeView employee){
-        List<Follow> follows = em.createNamedQuery(JpaConst.Q_FLW_GET_ALL_FLWEMP,Follow.class)
-                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
-                .getResultList();
-        return FollowConverter.toViewList(follows);
+    	List<FollowView> follows = new ArrayList<FollowView>();
+    	List<Object[]> followList = session.createSQLQuery(JpaConst.Q_FLW_GET_ALL_FLWEMP_VIEW_DEF)
+    			.setParameter(JpaConst.JPQL_PARM_EMPLOYEE, employee.getId()).list();
+
+    	for(Object[] row : followList){
+    		FollowView flw = new FollowView();
+
+    		flw.setId(row[0] == null ? null : (Integer)row[0]);
+    		flw.setNot_followed_employee_id(row[1] == null ? null : (Integer)row[1]);
+    		flw.setName((String)row[2]);
+    		flw.setFollowed_employee_id(row[3] == null ? null : (Integer)row[1]);
+    		follows.add(flw);
+    	}
+
+        return follows;
     }
 
 
     /*
      * ログインしている従業員のフォローしている従業員のidをリストで取得する
      * */
-    public List<Follow> getFollowEmp2(EmployeeView employee){
-        List<Follow> follows = em.createNamedQuery(JpaConst.Q_FLW_GET_ALL_FLWEMP,Follow.class)
-                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
-                .getResultList();
-        return follows;
-    }
+//    public List<Follow> getFollowEmp2(EmployeeView employee){
+//        List<Follow> follows = em.createNamedQuery(JpaConst.Q_FLW_GET_ALL_FLWEMP_VIEW,Follow.class)
+//                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(employee))
+//                .getResultList();
+//        return follows;
+//    }
 
 
 

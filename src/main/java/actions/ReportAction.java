@@ -108,6 +108,7 @@ public void create() throws ServletException, IOException {
         //パラメータの値をもとに日報情報のインスタンスを作成する
         ReportView rv = new ReportView(
                 null,
+                null,
                 ev, //ログインしている従業員を、日報作成者として登録する
                 day,
                 getRequestParam(AttributeConst.REP_TITLE),

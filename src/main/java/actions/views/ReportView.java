@@ -24,6 +24,11 @@ public class ReportView {
     private Integer id;
 
     /**
+     * 指名
+     */
+    private String name;
+
+    /**
      * 日報を登録した従業員
      */
     private EmployeeView employee;

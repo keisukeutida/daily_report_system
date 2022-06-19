@@ -21,14 +21,14 @@ public class FollowView {
     private Integer id;
 
     /**
-     * フォローをした従業員
+     * フォローしない従業員
      */
-    private EmployeeView employee;
+    private Integer not_followed_employee_id;
 
     /**
      * フォローされた従業員
      */
-    private EmployeeView followed_employee;
+    private Integer followed_employee_id;
 
 
     private String name;

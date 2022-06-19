@@ -48,11 +48,13 @@ public class TopAction extends ActionBase {
         //ログイン中の従業員が作成した日報データを、指定されたページ数の一覧画面に表示する分取得する
         int page = getPage();
         List<ReportView> reports = service.getMinePerPage(loginEmployee, page);
+        List<ReportView> reportsFollowed = service.getFollowedEmpLatestReport(loginEmployee);
 
         //ログイン中の従業員が作成した日報データの件数を取得
         long myReportsCount = service.countAllMine(loginEmployee);
 
         putRequestScope(AttributeConst.REPORTS, reports); //取得した日報データ
+        putRequestScope(AttributeConst.FLW_REPORTS, reportsFollowed); //フォロー中従業員の日報データ
         putRequestScope(AttributeConst.REP_COUNT, myReportsCount); //ログイン中の従業員が作成した日報の数
         putRequestScope(AttributeConst.PAGE, page); //ページ数
         putRequestScope(AttributeConst.MAX_ROW, JpaConst.ROW_PER_PAGE); //1ページに表示するレコードの数

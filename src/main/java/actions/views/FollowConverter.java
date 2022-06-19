@@ -17,11 +17,12 @@ public class FollowConverter {
      * @return Reportのインスタンス
      */
     public static Follow toModel(FollowView fl) {
-        return new Follow(
-                fl.getId(),
-                EmployeeConverter.toModel(fl.getEmployee()),
-                EmployeeConverter.toModel(fl.getFollowed_employee())
-                );
+    	return new Follow();
+//        return new Follow(
+//                fl.getId(),
+//                EmployeeConverter.toModel(fl.getEmployee()),
+//                EmployeeConverter.toModel(fl.getFollowed_employee())
+//                );
     }
 
     /**
@@ -36,10 +37,13 @@ public class FollowConverter {
         }
 
         return new FollowView(
-                f.getId(),
-                EmployeeConverter.toView(f.getEmployee()),
-                EmployeeConverter.toView(f.getFollowed_employee())
                 );
+
+//        return new FollowView(
+//                f.getId(),
+//                EmployeeConverter.toView(f.getEmployee()),
+//                EmployeeConverter.toView(f.getFollowed_employee())
+//                );
     }
 
     /**
@@ -65,8 +69,9 @@ public class FollowConverter {
      */
     public static void copyViewToModel(Follow f, FollowView fl) {
         f.setId(fl.getId());
-        f.setEmployee(EmployeeConverter.toModel(fl.getEmployee()));
-        f.setFollowed_employee(EmployeeConverter.toModel(fl.getFollowed_employee()));
+        //f.setEmployee_id(EmployeeConverter.toModel(fl.getEmployee()));
+//        f.setEmployee(EmployeeConverter.toModel(fl.getEmployee()));
+        //f.setFollowed_employee(EmployeeConverter.toModel(fl.getFollowed_employee()));
 
 
     }

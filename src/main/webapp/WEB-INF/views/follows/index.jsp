@@ -17,28 +17,28 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>フォロー管理</h2>
-            <ul>
-                <li><c:out value="${login_employee.name}" /></li>
-            </ul>
+        <h2>フォロー管理ページ一覧</h2>
             <c:choose>
                 <c:when test="${follow != null}">
                     <table id="follow_list">
                         <tbody>
                             <tr>
-                    <th>氏名</th>
-                    <th>フォロー操作</th>
+                    <th>指名</th>
+                    <th>操作</th>
                 </tr>
-                <c:forEach var="employee" items="${employees}" varStatus="status">
+                <c:forEach var="flw" items="${follow}" varStatus="status">
                     <tr class="row${status.count % 2}">
-                        <td><c:out value="${employee.name}" /></td>
-                                 <tr>
-                                      <td><c:out value="${follows.followed_employee.name}" /></td>
-                                      <td>
-                                      </td>
-                                 </tr>
-
-                            </c:forEach>
+                        <td align = "center"><c:out value="${flw.name}" /></td>
+                        <td align = "center">
+                        <c:if test="${flw.id == null}">
+                        <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">フォローする</a>&nbsp;
+                    	</c:if>
+                    	<c:if test="${flw.id != null}">
+                        <a href="<c:url value='?action=${actEmp}&command=${commIdx}' />">フォローを外す</a>&nbsp;
+                    	</c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
                         </tbody>
                     </table>
                 </c:when>

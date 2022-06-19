@@ -71,7 +71,8 @@ public class FollowAction extends ActionBase {
 
 
         //パラメータの値をもとにfollowsテーブルのインスタンスを作成する
-        FollowView fl = new FollowView(null,loginEmp,emp);
+//        FollowView fl = new FollowView(null,loginEmp,emp);
+        FollowView fl = new FollowView();
         //データの登録
         service.create(fl);
         removeSessionScope(AttributeConst.EMPLOYEE);

@@ -56,9 +56,9 @@ public class Follow {
      * フォローされた従業員
      */
 
-    @ManyToOne
-    @JoinColumn(name = JpaConst.FLW_COL_FLWEMP, nullable = false)
-    private Employee followed_employee;
+//    @ManyToOne
+//    @JoinColumn(name = JpaConst.FLW_COL_FLWEMP, nullable = false)
+//    private Employee followed_employee;
 
 
 }

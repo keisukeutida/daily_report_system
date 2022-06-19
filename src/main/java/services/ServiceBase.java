@@ -2,6 +2,9 @@ package services;
 
 import javax.persistence.EntityManager;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
 import utils.DBUtil;
 
 /**
@@ -13,6 +16,8 @@ public class ServiceBase {
      * EntityManagerインスタンス
      */
     protected EntityManager em = DBUtil.createEntityManager();
+    protected Session session = em.unwrap(org.hibernate.Session.class);
+    protected SessionFactory factory = session.getSessionFactory();
 
     /**
      * EntityManagerのクローズ

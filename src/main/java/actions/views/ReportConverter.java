@@ -40,6 +40,7 @@ public class ReportConverter {
 
         return new ReportView(
                 r.getId(),
+                null,
                 EmployeeConverter.toView(r.getEmployee()),
                 r.getReportDate(),
                 r.getTitle(),
